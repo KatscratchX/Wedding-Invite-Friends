@@ -196,12 +196,15 @@
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1fr;
+      justify-items: center;
       align-items: center;
       gap: clamp(26px, 5vw, 80px);
     }
     .hero-copy {
       max-width: 640px;
+      text-align: center;
+      margin: 0 auto;
     }
     .hero-copy .display {
       font-size: clamp(4.3rem, 12vw, 8.8rem);
@@ -219,6 +222,7 @@
       gap: 14px;
       flex-wrap: wrap;
       margin-top: 28px;
+      justify-content: center;
     }
     .hero-link {
       font-family: "Cormorant Garamond", Georgia, serif;
@@ -389,7 +393,7 @@
     }
     .chapter-head .display {
       font-size: clamp(3rem, 7vw, 5rem);
-      margin-top: 16px;
+      margin-top: 30px;
       margin-bottom: 18px;
     }
     .chapter-head .lede {
@@ -432,7 +436,7 @@
       font-weight: 700;
       font-size: clamp(2rem, 4vw, 3rem);
       color: var(--ink);
-      margin: 0 0 10px;
+      margin: 7px 0 10px;
     }
     .story-card p {
       margin: 0;
@@ -447,7 +451,7 @@
       letter-spacing: 0.18em;
       font-weight: 800;
       color: rgba(90, 42, 61, 0.58);
-      margin-bottom: auto;
+      margin-top: 8px;
     }
 
 
@@ -510,7 +514,7 @@
       z-index: -1;
     }
     .meeting-panel h3, .meeting-notes h3 {
-      margin: 0 0 14px;
+      margin: 7px 0 14px;
       font-family: "Cormorant Garamond", serif;
       font-weight: 700;
       font-size: clamp(2.3rem, 4vw, 3.4rem);
@@ -981,11 +985,20 @@
       gap: 28px;
       align-items: stretch;
     }
-    .map-card, .venue-stack {
+    .map-card{
       position: relative;
       border-radius: 32px;
       background: rgba(255, 250, 242, 0.88);
       border: 1px solid rgba(112, 23, 57, 0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .venue-stack{
+      position: relative;
+      border-radius: 32px;
+      background: rgba(255, 250, 242, 0.88);
+      /*border: 1px solid rgba(112, 23, 57, 0.12);*/
       box-shadow: var(--shadow);
       overflow: hidden;
     }
@@ -996,8 +1009,7 @@
       flex-direction: column;
       gap: 18px;
     }
-    .map-card::before,
-    .venue-stack::before {
+    .map-card::before{
       content: "";
       position: absolute;
       inset: 16px;
@@ -1005,6 +1017,16 @@
       border: 1px solid rgba(112, 23, 57, 0.10);
       pointer-events: none;
     }
+
+    .venue-stack::before{
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 24px;
+      /*border: 1px solid rgba(112, 23, 57, 0.10);*/
+      pointer-events: none;
+    }
+
     .route-map {
       flex: 1;
       min-height: 0;
@@ -1025,9 +1047,9 @@
     .map-copy {
       flex-shrink: 0;
       background: rgba(255, 250, 242, 0.86);
-      border: 1px solid rgba(112, 23, 57, 0.10);
       border-radius: 20px;
-      padding: 20px 18px;
+      padding: 0px 18px;
+      margin-bottom: 20px;
     }
     .map-copy h3 {
       margin: 0 0 10px;
@@ -1318,7 +1340,7 @@
         bottom: 40px;
       }
       .chapter {
-        padding: 80px 0;
+        padding: 20px 0;
       }
       .story-card,
       .meeting-panel,
@@ -1423,7 +1445,7 @@
       object-position: left center;
       pointer-events: none;
       z-index: 2;
-      filter: drop-shadow(0 20px 50px rgba(112, 23, 57, 0.18));
+      filter: drop-shadow(0 32px 64px rgba(60, 10, 30, 0.38)) drop-shadow(0 8px 18px rgba(60, 10, 30, 0.22));
     }
     /* Desktop/tablet: content on right */
     .theme-maroon .scene-inner-content {
@@ -1664,9 +1686,12 @@
       max-width: 48%;
       object-fit: contain;
       object-position: left bottom;
+      margin-left: 20px;
+      margin-bottom: 10px;
       pointer-events: none;
       z-index: 2;
-      filter: drop-shadow(0 20px 50px rgba(157, 43, 38, 0.22));
+      filter: drop-shadow(0 20px 50px rgba(142, 83, 80, 0.22));
+      opacity: 0.85;
     }
     @media (max-width: 720px) {
       .reception-scene-img {
@@ -1682,13 +1707,6 @@
 <body>
   <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
-  <nav class="quick-nav" aria-label="Section navigation">
-    <a href="#home" data-nav="home" class="active">Home</a>
-    <a href="#story" data-nav="story">Story</a>
-    <a href="#functions" data-nav="functions">Events</a>
-    <a href="#map" data-nav="map">Map</a>
-    <a href="#rsvp" data-nav="rsvp">RSVP</a>
-  </nav>
 
   <main class="shell">
     <section id="home" class="hero section-anchor" data-section="home">
@@ -1704,7 +1722,7 @@
             <a class="hero-link" href="#functions">See the celebrations</a>
             <a class="hero-link" href="#story">Read our story</a>
           </div>
-          <img src="Ticket.png" alt="Wedding invitation ticket" data-reveal style="width:100%;max-width:480px;height:auto;display:block;margin-top:28px;filter:drop-shadow(0 20px 48px rgba(70,18,37,0.22)) drop-shadow(0 6px 14px rgba(70,18,37,0.14));">
+          <img src="Ticket.png" alt="Wedding invitation ticket" data-reveal style="width:100%;max-width:480px;height:auto;display:block;margin-top:28px;margin-left:auto;margin-right:auto;filter:drop-shadow(0 20px 48px rgba(70,18,37,0.22)) drop-shadow(0 6px 14px rgba(70,18,37,0.14));">
           <div class="scroll-note" data-reveal>
             <span>Scroll for the story</span>
             <span></span>
@@ -1729,7 +1747,7 @@
 
         <div class="split-grid">
           <article class="story-card" data-reveal>
-            <img src="Delhi.png" aria-hidden="true" style="position:absolute;right:0;top:0;height:100%;width:60%;object-fit:cover;object-position:left center;opacity:0.09;pointer-events:none;z-index:0;border-radius:0 30px 30px 0;">
+            <img src="Delhi.png" aria-hidden="true" style="position:absolute;right:0;top:0;height:100%;width:60%;object-fit:cover;object-position:left center;opacity:0.18;pointer-events:none;z-index:0;border-radius:0 30px 30px 0;">
             <div class="card-topline">Delhi</div>
             <h3>Apurba &amp; the pulse of the city.</h3>
             <p>
@@ -1738,7 +1756,7 @@
           </article>
 
           <article class="story-card" data-reveal style="align-items: flex-end; text-align: right;">
-            <img src="Guntur.png" aria-hidden="true" style="position:absolute;left:0;top:0;height:100%;width:60%;object-fit:cover;object-position:right center;opacity:0.09;pointer-events:none;z-index:0;border-radius:30px 0 0 30px;">
+            <img src="Guntur.png" aria-hidden="true" style="position:absolute;left:0;top:0;height:100%;width:60%;object-fit:cover;object-position:right center;opacity:0.18;pointer-events:none;z-index:0;border-radius:30px 0 0 30px;">
             <div class="card-topline">Guntur</div>
             <h3>Gowtham &amp; the quiet of home.</h3>
             <p style="margin-left: auto;">
@@ -1814,29 +1832,6 @@
             </div>
           </div>
 
-          <!-- ── Mehendi ── -->
-          <div class="glass-card glass-card--mehendi" data-reveal>
-            <span class="gc-num">02 · Pre-Wedding</span>
-            <h2 class="gc-name">Mehendi</h2>
-            <p class="gc-tagline">An afternoon of henna, music,<br>and laughter!.</br><i>Lunch will be served if you prefer.</i></p>
-            <div class="gc-rule"></div>
-            <div class="gc-details">
-              <div class="gc-row">
-                <span class="gc-lbl">Date</span>
-                <span class="gc-val">23<sup style="font-size:9px">rd</sup> June 2026</span>
-              </div>
-              <div class="gc-row">
-                <span class="gc-lbl">Time</span>
-                <span class="gc-val">4:00 PM</span>
-              </div>
-              <div class="gc-row" style="align-items:flex-start">
-                <span class="gc-lbl">Venue</span>
-                <span class="gc-val small">B-802 Aashiana Apt,<br>Mayur Vihar Ph-1, New Delhi</span>
-              </div>
-            </div>
-            <span class="gc-badge">Wear your favourite green</span>
-          </div>
-
           <!-- ── Haldi ── -->
           <div class="glass-card glass-card--haldi" data-reveal>
             <span class="gc-num">03 · Wedding Morning</span>
@@ -1859,6 +1854,31 @@
             </div>
             <span class="gc-badge">Wear your best yellow</span>
           </div>
+
+          <!-- ── Mehendi ── -->
+          <div class="glass-card glass-card--mehendi" data-reveal>
+            <span class="gc-num">02 · Pre-Wedding</span>
+            <h2 class="gc-name">Mehendi</h2>
+            <p class="gc-tagline">An afternoon of henna, music & laughter</br><i>Lunch will be served if you prefer.</i></p>
+            <div class="gc-rule"></div>
+            <div class="gc-details">
+              <div class="gc-row">
+                <span class="gc-lbl">Date</span>
+                <span class="gc-val">23<sup style="font-size:9px">rd</sup> June 2026</span>
+              </div>
+              <div class="gc-row">
+                <span class="gc-lbl">Time</span>
+                <span class="gc-val">4:00 PM</span>
+              </div>
+              <div class="gc-row" style="align-items:flex-start">
+                <span class="gc-lbl">Venue</span>
+                <span class="gc-val small">B-802 Aashiana Apt,<br>Mayur Vihar Ph-1, New Delhi</span>
+              </div>
+            </div>
+            <span class="gc-badge">Wear your favourite green</span>
+          </div>
+
+          
 
         </div><!-- /grid -->
       </div><!-- /body -->
@@ -1885,15 +1905,19 @@
               <div class="grand-event-details" style="margin-top:24px">
                 <div class="gc-row">
                   <span class="gc-lbl">Date</span>
-                  <span class="gc-val">22<sup style="font-size:9px">nd</sup> June 2026</span>
+                  <span class="gc-val">24<sup style="font-size:9px">th</sup> June 2026</span>
                 </div>
                 <div class="gc-row">
-                  <span class="gc-lbl">Time</span>
-                  <span class="gc-val">10:00 AM</span>
+                  <span class="gc-lbl">Starts</span>
+                  <span class="gc-val">6:30 PM</span>
+                </div>
+                <div class="gc-row">
+                  <span class="gc-lbl">Dinner</span>
+                  <span class="gc-val">9 PM</span>
                 </div>
                 <div class="gc-row" style="align-items:flex-start">
                   <span class="gc-lbl">Venue</span>
-                  <span class="gc-val small">B-802 Aashiana Apt,<br>Mayur Vihar Ph-1, New Delhi</span>
+                  <span class="gc-val small">Crowne Plaza Hotel,<br>Mayur Vihar Ph-1 extn, New Delhi</span>
                 </div>
               </div>
             </div>
@@ -1907,21 +1931,8 @@
         <div class="event-scene event-scene-grand" data-reveal>
           <div class="scene-card scene-card-grand content-right">
             <div class="scene-gradient"></div>
-            <img src="reception-couple-nobg.png" class="reception-scene-img" alt="" aria-hidden="true">
-            <div class="scene-layer top-left" style="width: 200px; height: 200px; color: var(--chilli); opacity: 0.18;" data-depth="0.18" data-axis="y">
-              <svg viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M42 78C52 44 86 42 106 60C130 80 130 114 106 140C84 162 60 168 52 186" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-                <path d="M84 106C98 80 132 78 150 96C170 114 162 144 138 160" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-                <path d="M134 64C146 42 174 42 186 56" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="scene-layer bottom-left" style="width: 190px; height: 100px; color: var(--chilli); opacity: 0.22;" data-depth="0.24" data-axis="x">
-              <svg viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 70C36 50 58 54 76 38C92 24 110 20 164 28" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 10"/>
-                <circle cx="14" cy="70" r="6" fill="currentColor"/>
-                <circle cx="164" cy="28" r="6" fill="currentColor"/>
-              </svg>
-            </div>
+            <img src="couple edited.png" class="reception-scene-img" alt="" aria-hidden="true">
+
             <div class="scene-inner-content">
               <div class="event-number">05</div>
               <div class="event-kicker">Southbound ending</div>
@@ -1932,7 +1943,7 @@
               <div class="grand-event-details" style="margin-top:24px">
                 <div class="gc-row">
                   <span class="gc-lbl">Date</span>
-                  <span class="gc-val">2 July 2026</span>
+                  <span class="gc-val">2<sup style="font-size:9px">nd</sup> July 2026</span>
                 </div>
                 <div class="gc-row">
                   <span class="gc-lbl">Time</span>
@@ -1958,7 +1969,7 @@
         <div class="map-layout">
           <article class="map-card" data-reveal>
             <div class="route-map" aria-hidden="true">
-              <img src="map.png" alt="Route map" style="width:50%;height:auto;display:block;margin:0 auto;border-radius:12px;">
+              <img src="map.png" alt="Route map" style="width:50%;height:auto;display:block;margin:8px auto;border-radius:12px;">
             </div>
             <div class="map-copy">
               <h3>Local area map</h3>
@@ -2019,14 +2030,7 @@
             <div>
               <h2>Come celebrate with us.</h2>
 
-              <div class="countdown" id="countdown" aria-label="Countdown to wedding">
-                <div class="count-item"><strong id="days">00</strong><span>Days</span></div>
-                <div class="count-item"><strong id="hours">00</strong><span>Hours</span></div>
-                <div class="count-item"><strong id="mins">00</strong><span>Minutes</span></div>
-                <div class="count-item"><strong id="secs">00</strong><span>Seconds</span></div>
-              </div>
-
-              <div class="closing-actions">
+<div class="closing-actions">
                 <a class="rsvp-wa-btn" href="https://wa.me/918826358908?text=Hi!%20I%20received%20the%20wedding%20invite%20for%20Gowtham%20and%20Apurba.%20I%20would%20love%20to%20attend." target="_blank" rel="noopener noreferrer">RSVP on WhatsApp</a>
                 <a href="#home">Back to top</a>
               </div>
@@ -2034,11 +2038,13 @@
 
             <div class="closing-quote">
               <h3>RSVP</h3>
-              <p>8826358908</p>
-              <p style="margin-top: 16px;">24 June 2026, 6:30 PM<br>New Delhi</p>
-              <p style="margin-top: 16px;">2 July 2026, 6:30 PM<br>Guntur</p>
+              
+              <p style="margin-top: 16px;">+91 8826358908<br>24 June 2026, 6:30 PM | New Delhi</p>
+              
+              <p style="margin-top: 16px;">+91 7767953524<br>2 July 2026, 6:30 PM | Guntur</p>
+              
               <p style="margin-top: 16px; color: rgba(255,250,242,0.56);">
-                This version fixes the big failures in the first pass: too much dead space, weak story spine, and not enough use of the main illustration.
+                See you soon!
               </p>
             </div>
           </div>
